@@ -13,7 +13,7 @@ public class SairGaragem {
 
     public TicketDTO execute(TicketDTO dto) {
         // Transformar dto em entity
-        // Tentar encontrar ticket na base, com status valido
+        // Tentar encontrar ticket na base
         // verificar se ticket foi pago
         // persistir saida no banco
         // liberar uma vaga do estacionamento
