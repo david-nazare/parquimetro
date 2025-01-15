@@ -2,7 +2,7 @@ package com.fiap.parquimetro.entrypoints.rest_controllers.error_handlers;
 
 import java.time.Instant;
 
-public class LowLevelError {
+public class EntrarGaragemError {
     private Instant timestamp;
     private Integer status;
     private String error;

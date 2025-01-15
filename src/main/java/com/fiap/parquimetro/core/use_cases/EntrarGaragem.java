@@ -3,9 +3,7 @@ package com.fiap.parquimetro.core.use_cases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fiap.parquimetro.core.domain.exceptions.DomainStateException;
 import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
-import com.fiap.parquimetro.core.use_cases.exceptions.EntrarGaragemException;
 import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
