@@ -1,6 +1,9 @@
 package com.fiap.parquimetro.core.domain;
 
+import java.util.Date;
 import java.util.UUID;
+
+import com.fiap.parquimetro.core.domain.exceptions.DomainStateException;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,10 +22,14 @@ import lombok.Setter;
 public class Ticket {
     @Id
     private UUID id;
-    private String horarioEntrada;
-    private String horarioSaida;
+    private Date horarioEntrada;
+    private Date horarioSaida;
     private String status;
     private Double valorPago;
     private UUID idMotorista;
     private UUID idVeiculo;
+
+    public void validar() {
+        
+    }
 }

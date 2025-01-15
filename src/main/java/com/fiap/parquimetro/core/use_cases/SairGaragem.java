@@ -1,11 +1,24 @@
 package com.fiap.parquimetro.core.use_cases;
 
-import com.fiap.parquimetro.core.domain.exceptions.DomainStateException;
-import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
-import com.fiap.parquimetro.core.use_cases.exceptions.LowLevelException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
+import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
+
+@Service
 public class SairGaragem {
-    public TicketDTO execute(TicketDTO dto)  throws DomainStateException, LowLevelException {
+    @Autowired
+    TicketRepository ticketRepository;
+
+    public TicketDTO execute(TicketDTO dto) {
+        // Transformar dto em entity
+        // Tentar encontrar ticket na base, com status valido
+        // verificar se ticket foi pago
+        // persistir saida no banco
+        // liberar uma vaga do estacionamento
+        // retornar dto com status atualizado
+
         return null;
     }
 }
