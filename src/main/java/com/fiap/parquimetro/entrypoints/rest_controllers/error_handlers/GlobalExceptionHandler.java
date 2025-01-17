@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.PagamentoPendenteException;
 import com.fiap.parquimetro.core.use_cases.exceptions.TicketNaoEncontradoException;
+import com.fiap.parquimetro.core.use_cases.exceptions.VagaIndisponivelException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -18,6 +20,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(TicketNaoEncontradoException.class)
     public ResponseEntity<String> handleTicketNaoEncontradoException(TicketNaoEncontradoException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EstacionamentoNaoEncontradoException.class)
+    public ResponseEntity<String> handleEstacionamentoNaoEncontradoException(EstacionamentoNaoEncontradoException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(VagaIndisponivelException.class)
+    public ResponseEntity<String> handleVagaIndisponivelException(VagaIndisponivelException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

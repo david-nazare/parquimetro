@@ -1,7 +1,5 @@
 package com.fiap.parquimetro.core.domain;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,15 +15,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="ticket")
-public class Ticket {
+@Table(name="estacionamento")
+public class Estacionamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String placaVeiculo;
-    private LocalDateTime horarioEntrada;
-    private LocalDateTime horarioSaida;
-    private boolean pago;
-    private Long estacionamentoId;
-    private Double valorPago;
+    private String nome;
+    private String endereco;
+    private int capacidadeTotal;
+    private int vagasDisponiveis;
+    private Double valorVaga;
 }

@@ -27,8 +27,8 @@ public class TicketController {
     PagarEstadia pagarEstadia;
 
     @PostMapping("/entrar-garagem")
-    public ResponseEntity<Ticket> registrarEntrada(@RequestParam String placaVeiculo) {
-        var ticketDTO = entrarGaragem.execute(placaVeiculo);
+    public ResponseEntity<Ticket> registrarEntrada(@RequestParam String placaVeiculo, @RequestParam Long estacionamentoId) {
+        var ticketDTO = entrarGaragem.execute(placaVeiculo, estacionamentoId);
         return new ResponseEntity<>(ticketDTO, HttpStatus.CREATED);
     }
 
