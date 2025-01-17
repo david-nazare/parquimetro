@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.fiap.parquimetro.core.domain.Estacionamento;
 import com.fiap.parquimetro.core.domain.Ticket;
+import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
 import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.TicketNaoEncontradoException;
+import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.EstacionamentoRepository;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
@@ -18,7 +20,7 @@ public class PagarEstadia {
     @Autowired
     EstacionamentoRepository estacionamentoRepository;
 
-    public Ticket execute(Long ticketId) {
+    public TicketDTO realizaPagamento(Long ticketId) {
         // buscar ticket na base
         Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNaoEncontradoException("Ticket não encontrado"));
         
@@ -31,8 +33,10 @@ public class PagarEstadia {
         // efetivar pagamento
         ticket.setPago(true);
 
-        // retornar dto atualizado
-        return ticketRepository.save(ticket);
+        // salva alteracoes na base
+        ticketRepository.save(ticket);
+
+        return Factories.buildFrom(ticket);
     }
     
 }

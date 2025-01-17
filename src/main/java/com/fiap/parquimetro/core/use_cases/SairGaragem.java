@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.fiap.parquimetro.core.domain.Estacionamento;
 import com.fiap.parquimetro.core.domain.Ticket;
+import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
 import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.PagamentoPendenteException;
 import com.fiap.parquimetro.core.use_cases.exceptions.TicketNaoEncontradoException;
+import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.EstacionamentoRepository;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
@@ -21,7 +23,7 @@ public class SairGaragem {
     @Autowired
     EstacionamentoRepository estacionamentoRepository;
 
-    public Ticket execute(Long ticketId) {
+    public TicketDTO registraSaida(Long ticketId) {
         // Tentar encontrar ticket na base
         Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new EstacionamentoNaoEncontradoException("Estacionamento não encontrado"));
 
@@ -38,7 +40,10 @@ public class SairGaragem {
 
         ticket.setHorarioSaida(LocalDateTime.now());
 
-        // persistir saida no banco e retornar ticket com status atualizado
-        return ticketRepository.save(ticket);
+        // persistir saida no banco
+        ticketRepository.save(ticket);
+
+        // retornar ticket com status atualizado
+        return Factories.buildFrom(ticket);
     }
 }
