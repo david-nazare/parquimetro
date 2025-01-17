@@ -1,9 +1,10 @@
 package com.fiap.parquimetro.core.domain;
 
-import java.util.Date;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -19,15 +20,15 @@ import lombok.Setter;
 @Table(name="ticket")
 public class Ticket {
     @Id
-    private UUID id;
-    private Date horarioEntrada;
-    private Date horarioSaida;
-    private String status;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String placaVeiculo;
+    private LocalDateTime horarioEntrada;
+    private LocalDateTime horarioSaida;
+    private boolean pago;
     private Double valorPago;
-    private UUID idMotorista;
-    private UUID idVeiculo;
 
-    public void validar() {
+    public void valida() {
         
     }
 }
