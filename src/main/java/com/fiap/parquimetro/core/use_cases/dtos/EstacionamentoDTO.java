@@ -4,7 +4,7 @@ public record EstacionamentoDTO(
     Long id,
     String nome,
     String endereco,
-    int capacidadeTotal,
-    int vagasDisponiveis,
+    Integer capacidadeTotal,
+    Integer vagasDisponiveis,
     Double valorVaga
 ) {}

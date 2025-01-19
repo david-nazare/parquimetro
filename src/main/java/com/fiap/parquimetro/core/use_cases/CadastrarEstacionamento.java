@@ -14,7 +14,7 @@ public class CadastrarEstacionamento {
 
     public EstacionamentoDTO cadastra(EstacionamentoDTO dto) {
         var estacionamento = Factories.buildFrom(dto);
-        estacionamentoRepository.save(estacionamento);
+        estacionamento = estacionamentoRepository.save(estacionamento);
         return Factories.buildFrom(estacionamento);
     }
 }

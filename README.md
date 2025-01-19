@@ -8,8 +8,5 @@ docker run -d --name parquimetro -e POSTGRES_PASSWORD=p@ssw0rd -p 5432:5432 post
 
 TODO:
 - Adicionar disparo de eventos nos use cases
-- Corrigir renderizacao do Swagger
 - Criar Dockerfile
-- Criar script para popular dados no banco
 - Ajustar README
-- Testar

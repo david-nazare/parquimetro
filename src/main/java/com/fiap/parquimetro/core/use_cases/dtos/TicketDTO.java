@@ -7,7 +7,7 @@ public record TicketDTO(
     String placaVeiculo,
     LocalDateTime horarioEntrada,
     LocalDateTime horarioSaida,
-    boolean pago,
+    Boolean pago,
     Long estacionamentoId,
     Double valorPago
 ) {}

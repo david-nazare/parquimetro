@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +19,7 @@ import com.fiap.parquimetro.core.use_cases.SairGaragem;
 import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
 
 @RestController
-@RequestMapping("/api/ticket")
+@RequestMapping("/ticket")
 public class TicketController {
     @Autowired
     EntrarGaragem entrarGaragem;
@@ -28,31 +30,21 @@ public class TicketController {
     @Autowired
     PagarEstadia pagarEstadia;
 
-    @PostMapping("/entrar-garagem")
-    public ResponseEntity<TicketDTO> registrarEntrada(@RequestParam String placaVeiculo, @RequestParam Long estacionamentoId) {
-        var dto = new TicketDTO(
-            null, 
-            placaVeiculo, 
-            LocalDateTime.now(), 
-            null, 
-            false, 
-            estacionamentoId, 
-            null
-        );
-
-        TicketDTO ticketDTO = entrarGaragem.registraEntrada(dto);
+    @PostMapping
+    public ResponseEntity<TicketDTO> registrarEntrada(@RequestBody TicketDTO ticketDTO) {
+        ticketDTO = entrarGaragem.registraEntrada(ticketDTO);
         return new ResponseEntity<>(ticketDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping("/pagar-estadia/{ticketId}")
+    @PutMapping("/pagar/{ticketId}")
     public ResponseEntity<TicketDTO> pagarEstadia(@PathVariable Long ticketId) {
         TicketDTO ticketDTO = pagarEstadia.realizaPagamento(ticketId);
-        return new ResponseEntity<>(ticketDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/sair-garagem/{ticketId}")
+    @PutMapping("/sair/{ticketId}")
     public ResponseEntity<TicketDTO> sairGaragem(@PathVariable Long ticketId) {
         TicketDTO ticketDTO = sairGaragem.registraSaida(ticketId);
-        return new ResponseEntity<>(ticketDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
     }
 }
