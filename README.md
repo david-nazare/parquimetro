@@ -41,19 +41,19 @@ git clone https://github.com/david-nazare/parquimetro.git
 cd parquimetro
 ```
 
-2. Configurar o Banco de Dados com Docker
+### 2. Configurar o Banco de Dados com Docker
 Use o Docker Compose para configurar o PostgreSQL. Certifique-se de que o arquivo docker-compose.yml está presente no diretório raiz.
 
 ```bash
 docker-compose up -d
 ```
-3. Endpoints da API
+### 3. Endpoints da API
 Abaixo estão os principais endpoints disponíveis:
 
-# Cadastrar Estacionamento
+### Cadastrar Estacionamento
 POST /estacionamentos
-Body:
-json
+
+```json
 {
   "nome": "Estacionamento Central",
   "endereco": "Rua Principal, 123",
@@ -62,10 +62,11 @@ json
   "vagasDisponiveis": 40,
   "valorVaga": 14.5
 }
+```
 
-# Entrar na Garagem
+### Entrar na Garagem
 POST: /ticket
-Body:
+
 ```json
 {
   "id": null,
@@ -78,13 +79,13 @@ Body:
 }
 ```
 
-# Pagar Estadia
+### Pagar Estadia
 PUT /ticket/pagar/{ticketId}
 
-# Sair da Garagem
+### Sair da Garagem
 PUT /ticket/sair/{ticketId}
 
-## Contribuição
+### 4. Contribuição
 Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
 Fork este repositório.
@@ -93,7 +94,7 @@ Faça as alterações necessárias e commit: git commit -m 'Minha nova feature'.
 Envie as alterações para o repositório remoto: git push origin minha-feature.
 Abra um Pull Request.
 
-## Contato
+## 5. Contato
 Caso tenha dúvidas ou sugestões, entre em contato:
 
 Email: dsnazare@icloud.com
