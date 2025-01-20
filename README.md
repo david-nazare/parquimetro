@@ -47,7 +47,9 @@ Use o Docker Compose para configurar o PostgreSQL. Certifique-se de que o arquiv
 ```bash
 docker-compose up -d
 ```
-### 3. Endpoints da API
+---
+
+##  Endpoints da API
 Abaixo estão os principais endpoints disponíveis:
 
 ### Cadastrar Estacionamento
@@ -85,6 +87,8 @@ PUT /ticket/pagar/{ticketId}
 ### Sair da Garagem
 PUT /ticket/sair/{ticketId}
 
+---
+
 ### 4. Contribuição
 Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
@@ -93,6 +97,8 @@ Crie uma branch para sua feature: git checkout -b minha-feature.
 Faça as alterações necessárias e commit: git commit -m 'Minha nova feature'.
 Envie as alterações para o repositório remoto: git push origin minha-feature.
 Abra um Pull Request.
+
+---
 
 ## 5. Contato
 Caso tenha dúvidas ou sugestões, entre em contato:
