@@ -1,5 +1,4 @@
 # Parquimetro
-Sistema de gerenciamento de parquimetro
 
 Este é um sistema de controle de parquímetro desenvolvido em Java, com suporte para gerenciamento de estacionamentos e controle de estadias. O sistema inclui os seguintes casos de uso principais:
 
