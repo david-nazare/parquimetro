@@ -108,7 +108,6 @@ Abra um Pull Request.
 Caso tenha dúvidas ou sugestões, entre em contato:
 
 Email: dsnazare@icloud.com
-LinkedIn: David Nazare
 
 TODO:
 - Testar Docker Compose
