@@ -6,19 +6,26 @@ import org.springframework.stereotype.Service;
 import com.fiap.parquimetro.core.domain.Estacionamento;
 import com.fiap.parquimetro.core.domain.Ticket;
 import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
+import com.fiap.parquimetro.core.use_cases.events.PagamentoCompletedEvent;
 import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.TicketNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.EstacionamentoRepository;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class PagarEstadia {
     @Autowired
     TicketRepository ticketRepository;
 
     @Autowired
     EstacionamentoRepository estacionamentoRepository;
+
+    @Autowired
+    private final CoreEventPublisher coreEventPublisher;
 
     public TicketDTO realizaPagamento(Long ticketId) {
         // buscar ticket na base
@@ -35,6 +42,10 @@ public class PagarEstadia {
 
         // salva alteracoes na base
         ticketRepository.save(ticket);
+
+        // sinaliza que houve o pagamento da estadia
+        final var evento = new PagamentoCompletedEvent(ticket.getId());
+        coreEventPublisher.publish(evento);
 
         return Factories.buildFrom(ticket);
     }

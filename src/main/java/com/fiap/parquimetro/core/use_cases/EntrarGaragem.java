@@ -5,20 +5,28 @@ import org.springframework.stereotype.Service;
 
 import com.fiap.parquimetro.core.domain.Estacionamento;
 import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
+import com.fiap.parquimetro.core.use_cases.events.EntradaGaragemCompletedEvent;
 import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.VagaIndisponivelException;
 import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.EstacionamentoRepository;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EntrarGaragem {
 
     @Autowired
-    TicketRepository ticketRepository;
+    private TicketRepository ticketRepository;
 
     @Autowired
-    EstacionamentoRepository estacionamentoRepository;
+    private EstacionamentoRepository estacionamentoRepository;
+
+    @Autowired
+    private final CoreEventPublisher coreEventPublisher;
 
     public TicketDTO registraEntrada(TicketDTO dto) {
         // verificar se há vaga disponível
@@ -37,6 +45,11 @@ public class EntrarGaragem {
 
         // persistir entrada no banco
         ticketRepository.save(ticket);
+
+
+        // sinaliza que houve uma entrada na garagem
+        final var evento = new EntradaGaragemCompletedEvent(ticket.getId());
+        coreEventPublisher.publish(evento);
 
         return Factories.buildFrom(ticket);
     }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.fiap.parquimetro.core.domain.Estacionamento;
 import com.fiap.parquimetro.core.domain.Ticket;
 import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
+import com.fiap.parquimetro.core.use_cases.events.PagamentoCompletedEvent;
+import com.fiap.parquimetro.core.use_cases.events.SaidaGaragemCompletedEvent;
 import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.PagamentoPendenteException;
 import com.fiap.parquimetro.core.use_cases.exceptions.TicketNaoEncontradoException;
@@ -15,13 +17,19 @@ import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.EstacionamentoRepository;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class SairGaragem {
     @Autowired
     TicketRepository ticketRepository;
 
     @Autowired
     EstacionamentoRepository estacionamentoRepository;
+
+    @Autowired
+    private final CoreEventPublisher coreEventPublisher;
 
     public TicketDTO registraSaida(Long ticketId) {
         // Tentar encontrar ticket na base
@@ -42,6 +50,10 @@ public class SairGaragem {
 
         // persistir saida no banco
         ticketRepository.save(ticket);
+
+        // sinaliza que houve a saida da garagem
+        final var evento = new SaidaGaragemCompletedEvent(ticket.getId());
+        coreEventPublisher.publish(evento);
 
         // retornar ticket com status atualizado
         return Factories.buildFrom(ticket);
