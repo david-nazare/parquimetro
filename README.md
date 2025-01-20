@@ -41,8 +41,8 @@ git clone https://github.com/david-nazare/parquimetro.git
 cd parquimetro
 ```
 
-### 2. Configurar o Banco de Dados com Docker
-Use o Docker Compose para configurar o PostgreSQL. Certifique-se de que o arquivo docker-compose.yml está presente no diretório raiz.
+### 2. Execução do projeto via Docker Compose
+Use o Docker Compose para subir a aplicação.
 
 ```bash
 docker-compose up -d
@@ -50,10 +50,16 @@ docker-compose up -d
 ---
 
 ##  Endpoints da API
+
+Swagger:
+```bash
+http://localhost:8080/swagger-ui.html
+```
+
 Abaixo estão os principais endpoints disponíveis:
 
 ### Cadastrar Estacionamento
-POST /estacionamentos
+POST: /estacionamento
 
 ```json
 {
@@ -71,7 +77,6 @@ POST: /ticket
 
 ```json
 {
-  "id": null,
   "placaVeiculo": "PDD4T98",
   "horarioEntrada": "2025-01-19T17:30",
   "horarioSaida": null,
