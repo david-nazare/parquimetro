@@ -108,8 +108,3 @@ Abra um Pull Request.
 Caso tenha dúvidas ou sugestões, entre em contato:
 
 Email: dsnazare@icloud.com
-
-TODO:
-- Testar Docker Compose
-- Finalizar documento PDF
-- [Bonus] Refatorar codigo
