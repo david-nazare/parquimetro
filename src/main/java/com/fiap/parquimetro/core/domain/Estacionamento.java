@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="estacionamento")
@@ -21,24 +25,18 @@ public class Estacionamento {
     private String endereco;
     
     @Column(name="capacidade_total")
-    private Integer capacidadeTotal;
+    private int capacidadeTotal;
     
     @Column(name="vagas_disponiveis")
-    private Integer vagasDisponiveis;
+    private int vagasDisponiveis;
     
     @Column(name="valor_vaga")
     private Double valorVaga;
-    
+
     public Estacionamento() {
     }
-    public Estacionamento(
-        Long id, 
-        String nome, 
-        String endereco, 
-        Integer capacidadeTotal, 
-        Integer vagasDisponiveis,
-        Double valorVaga
-    ) {
+
+    public Estacionamento(Long id, String nome, String endereco, int capacidadeTotal, int vagasDisponiveis, Double valorVaga) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -46,50 +44,72 @@ public class Estacionamento {
         this.vagasDisponiveis = vagasDisponiveis;
         this.valorVaga = valorVaga;
     }
-    @Override
-    public String toString() {
-        return "Estacionamento [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", capacidadeTotal="
-                + capacidadeTotal + ", vagasDisponiveis=" + vagasDisponiveis + ", valorVaga=" + valorVaga + "]";
+
+    public Estacionamento(String nome, String endereco, int capacidadeTotal, int vagasDisponiveis, Double valorVaga) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.capacidadeTotal = capacidadeTotal;
+        this.vagasDisponiveis = vagasDisponiveis;
+        this.valorVaga = valorVaga;
     }
+
     public Long getId() {
         return id;
     }
-    public void setId(Long id) {
+
+    public Estacionamento setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
-    public void setNome(String nome) {
+
+    public Estacionamento setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public String getEndereco() {
         return endereco;
     }
-    public void setEndereco(String endereco) {
+
+    public Estacionamento setEndereco(String endereco) {
         this.endereco = endereco;
+        return this;
     }
 
-    public Integer getCapacidadeTotal() {
+    public int getCapacidadeTotal() {
         return capacidadeTotal;
     }
-    public void setCapacidadeTotal(Integer capacidadeTotal) {
+
+    public Estacionamento setCapacidadeTotal(int capacidadeTotal) {
         this.capacidadeTotal = capacidadeTotal;
+        return this;
     }
 
-    public Integer getVagasDisponiveis() {
+    public int getVagasDisponiveis() {
         return vagasDisponiveis;
     }
-    public void setVagasDisponiveis(Integer vagasDisponiveis) {
+
+    public Estacionamento setVagasDisponiveis(int vagasDisponiveis) {
         this.vagasDisponiveis = vagasDisponiveis;
+        return this;
     }
-    
+
     public Double getValorVaga() {
         return valorVaga;
     }
-    public void setValorVaga(Double valorVaga) {
+
+    public Estacionamento setValorVaga(Double valorVaga) {
         this.valorVaga = valorVaga;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Estacionamento [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", capacidadeTotal="
+                + capacidadeTotal + ", vagasDisponiveis=" + vagasDisponiveis + ", valorVaga=" + valorVaga + "]";
     }
 }
