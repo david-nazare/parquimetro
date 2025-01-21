@@ -6,9 +6,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="estacionamento")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Estacionamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,31 +29,17 @@ public class Estacionamento {
     private String endereco;
     
     @Column(name="capacidade_total")
-    private Integer capacidadeTotal;
+    private int capacidadeTotal;
     
     @Column(name="vagas_disponiveis")
-    private Integer vagasDisponiveis;
+    private int vagasDisponiveis;
     
     @Column(name="valor_vaga")
     private Double valorVaga;
-    
-    public Estacionamento() {
+
+    public Estacionamento(String estacionamento, String s, int i, int i1, double v) {
     }
-    public Estacionamento(
-        Long id, 
-        String nome, 
-        String endereco, 
-        Integer capacidadeTotal, 
-        Integer vagasDisponiveis,
-        Double valorVaga
-    ) {
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.capacidadeTotal = capacidadeTotal;
-        this.vagasDisponiveis = vagasDisponiveis;
-        this.valorVaga = valorVaga;
-    }
+
     @Override
     public String toString() {
         return "Estacionamento [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", capacidadeTotal="
