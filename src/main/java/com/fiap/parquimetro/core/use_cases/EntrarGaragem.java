@@ -12,7 +12,6 @@ import com.fiap.parquimetro.core.use_cases.factories.Factories;
 import com.fiap.parquimetro.infrastructure.repositories.EstacionamentoRepository;
 import com.fiap.parquimetro.infrastructure.repositories.TicketRepository;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Service

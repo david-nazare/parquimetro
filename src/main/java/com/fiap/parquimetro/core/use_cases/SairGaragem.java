@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.fiap.parquimetro.core.domain.Estacionamento;
 import com.fiap.parquimetro.core.domain.Ticket;
 import com.fiap.parquimetro.core.use_cases.dtos.TicketDTO;
-import com.fiap.parquimetro.core.use_cases.events.PagamentoCompletedEvent;
 import com.fiap.parquimetro.core.use_cases.events.SaidaGaragemCompletedEvent;
 import com.fiap.parquimetro.core.use_cases.exceptions.EstacionamentoNaoEncontradoException;
 import com.fiap.parquimetro.core.use_cases.exceptions.PagamentoPendenteException;

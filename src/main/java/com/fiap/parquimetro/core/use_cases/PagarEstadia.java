@@ -1,5 +1,7 @@
 package com.fiap.parquimetro.core.use_cases;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +37,7 @@ public class PagarEstadia {
         Estacionamento estacionamento = estacionamentoRepository.findById(ticket.getEstacionamentoId()).orElseThrow(() -> new EstacionamentoNaoEncontradoException("Estacionamento não encontrado"));
 
         // calcular valor a ser pago
-        ticket.setValorPago(estacionamento.getValorVaga());
+        ticket.setValorPago(estacionamento.getValorVaga() * (LocalDateTime.now().getHour() - ticket.getHorarioEntrada().getHour()));
         
         // efetivar pagamento
         ticket.setPago(true);
