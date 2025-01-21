@@ -34,13 +34,13 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 
 ## Configuração do Projeto
 
-### 1. Clone o repositório
+### Clone o repositório
 ```bash
 git clone https://github.com/david-nazare/parquimetro.git
 cd parquimetro
 ```
 
-### 2. Execução do projeto via Docker Compose
+### Execução do projeto via Docker Compose
 Use o Docker Compose para subir a aplicação.
 
 ```bash
@@ -93,7 +93,7 @@ PUT /ticket/sair/{ticketId}
 
 ---
 
-### 4. Contribuição
+### Contribuição
 Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
 Fork este repositório.
@@ -104,7 +104,7 @@ Abra um Pull Request.
 
 ---
 
-## 5. Contato
+## Contato
 Caso tenha dúvidas ou sugestões, entre em contato:
 
 Email: dsnazare@icloud.com
